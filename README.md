@@ -1,4 +1,7 @@
 <!-- PROJECT SHIELDS -->
+<p align="center">
+<img source="https://app.travis-ci.com/evoludigit/clean_fastapi.svg?branch=main&status=started">
+</p>
 <!-- PROJECT LOGO -->
   <h3 align="center">Clean architecture with FastAPI</h3>
 
