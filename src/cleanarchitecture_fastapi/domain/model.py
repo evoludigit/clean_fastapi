@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass
 from anytree import NodeMixin
+from typing import Optional
 from slugify import slugify
 
 pattern_ltree_compatible = "[^-a-z0-9_]+"
@@ -21,7 +22,7 @@ class Todo(NodeMixin):
     implements materialized path
     """
     info: TodoInfo
-    parent_todo: Todo
+    parent_todo: Optional[Todo]
     def __post_init__(self):
         this_todo_identifier: str = f"{identifier_from_string(self.info.name)}"
         if not self.parent_todo:
