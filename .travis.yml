@@ -10,7 +10,7 @@ before_install:
   - pip install poetry
 
 install:
-  - poetry install --no-root -v
+  - poetry install -v
 services:
 - postgresql
 env:
