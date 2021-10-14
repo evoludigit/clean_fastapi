@@ -1,3 +1,4 @@
+dit: xenial
 os: linux
 sudo: required
 language: python
