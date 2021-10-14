@@ -42,7 +42,7 @@
 ## About The Project
 
 Domain driven design, while gaining popularity thanks to books such as
-[Architecture Patters in Python][www.cosmicpython.com], is not yet so common.
+[Architecture Patterns in Python](www.cosmicpython.com), is not yet so common.
 
 This is a project showcasing how to build a FastAPI app with separation of
 concerns and layered (onion) architecture.
@@ -138,8 +138,10 @@ Project Link: [https://github.com/evoludigit/clean_architecture](https://github.
 <!-- ACKNOWLEDGMENTS -->
 ## Resources
 
-Clean architecture in Python:
+Apart from the DDD classics (red book: Implementing Domain Driven Design, and
+blue book: Domain Driven Design), these authors have advanced the cause for DDD
+in Python:
 
-* [Harry J.W. Percival and Bob Gregory](https://www.cosmicpython.com/) 
-**** [Sebastian Buczyński](https://breadcrumbscollector.tech/)
+* [Harry J.W. Percival and Bob Gregory](https://www.cosmicpython.com/)
 * [Leonardo Giordani](https://leanpub.com/clean-architectures-in-python)
+* [Sebastian Buczyński](https://breadcrumbscollector.tech/)
