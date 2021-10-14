@@ -7,11 +7,14 @@ python:
   - 3.9
 
 before_install:
-  - python -m pip install --upgrade pip
-  - pip install pipenv
+  - pip install poetry
 
 install:
-  - pipenv install --dev
-
+  - poetry install --no-root -v
+services:
+- postgresql
+env:
+    - DB_DRIVER=postgresql DB_HOST=localhost DB_PORT=5432 DB_USER=postgres DB_PASSWORD=""
+script: pytest
 script:
   - python -m pytest -v tests/domain
