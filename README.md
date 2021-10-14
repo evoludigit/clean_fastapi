@@ -41,8 +41,6 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
 Domain driven design, while gaining popularity thanks to books such as
 [Architecture Patters in Python][www.cosmicpython.com], is not yet so common.
 
@@ -64,7 +62,7 @@ concerns and layered (onion) architecture.
 
 ## Getting Started
 
-…
+to be completed …
 
 ### Prerequisites
 
@@ -74,6 +72,7 @@ concerns and layered (onion) architecture.
 
 1. Install PostgreSQL
 
+to be completed…
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
@@ -81,7 +80,7 @@ concerns and layered (onion) architecture.
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-…
+to be completed…
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -139,8 +138,8 @@ Project Link: [https://github.com/evoludigit/clean_architecture](https://github.
 <!-- ACKNOWLEDGMENTS -->
 ## Resources
 
-Clean architecture in Python
-* [Harry J.W. Percival / Bob Gregory](https://www.cosmicpython.com/)
+Clean architecture in Python:
+
+* [Harry J.W. Percival and Bob Gregory](https://www.cosmicpython.com/) 
 **** [Sebastian Buczyński](https://breadcrumbscollector.tech/)
 * [Leonardo Giordani](https://leanpub.com/clean-architectures-in-python)
-* [Gitmoji](https://www.webpagefx.com/tools/emoji-cheat-sheet)
