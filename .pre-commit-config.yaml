@@ -74,4 +74,4 @@ repos:
   - repo: https://github.com/Lucas-C/pre-commit-hooks
     rev: v1.1.9
     hooks:
-      - id: remove-tabs       types: [pyi]
+      - id: remove-tabs
