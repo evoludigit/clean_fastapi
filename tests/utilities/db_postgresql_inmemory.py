@@ -9,10 +9,6 @@ from sqlalchemy import text
 from sqlalchemy.orm import clear_mappers
 from sqlalchemy.orm import sessionmaker
 
-# Les tests se font sur une base en mémoire.
-# La solution ci-dessous permet d’utiliser Postgres plutôt que SQLite.
-# https://pypi.org/project/pytest-postgresql/
-# https://medium.com/@geoffreykoh/fun-with-fixtures-for-database-applications-8253eaf1a6d
 socket_dir = tempfile.TemporaryDirectory()
 postgresql_my_proc = factories.postgresql_proc(  # pylint:disable=W0612
     port=None,
@@ -40,7 +36,6 @@ def in_memory_db(postgresql_my):
     return engine
 
 
-# TODO explicit which scope
 @pytest.fixture
 def session(in_memory_db):
     clear_mappers()
