@@ -1,0 +1,17 @@
+os: linux
+sudo: required
+language: python
+cache: pip3
+
+python:
+  - 3.9
+
+before_install:
+  - python -m pip install --upgrade pip
+  - pip install pipenv
+
+install:
+  - pipenv install --dev
+
+script:
+  - python -m pytest -v tests/domain
