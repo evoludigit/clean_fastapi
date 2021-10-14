@@ -50,9 +50,16 @@ concerns and layered (onion) architecture.
 ### Built With
 
 
+* [Poetry](https://python-poetry.org)
 * [FastAPI](https://fastapi.tiangolo.com/)
 * [PostgreSQL](https://www.postgresql.org/)
 * [SQLAlchemy](https://www.sqlalchemy.org)
+
+
+Dev dependencies:
+
+* [Pytest-postgresql](https://pytest-pgsql.readthedocs.io/en/latest/)
+* [Travis](https://www.travis-ci.com)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
