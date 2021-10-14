@@ -11,8 +11,6 @@
   </p>
 </div>
 
-
-
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
@@ -39,34 +37,29 @@
   </ol>
 </details>
 
-
-
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
 Domain driven design, while gaining popularity thanks to books such as
-[Architecture Patterns in Python](www.cosmicpython.com), is not yet so common.
+[Architecture Patterns in Python](https://www.cosmicpython.com), is not yet so common.
 
 This is a project showcasing how to build a FastAPI app with separation of
 concerns and layered (onion) architecture.
 
 ### Built With
 
-
-* [Poetry](https://python-poetry.org)
-* [FastAPI](https://fastapi.tiangolo.com/)
-* [PostgreSQL](https://www.postgresql.org/)
-* [SQLAlchemy](https://www.sqlalchemy.org)
-
+- [Poetry](https://python-poetry.org)
+- [FastAPI](https://fastapi.tiangolo.com/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [SQLAlchemy](https://www.sqlalchemy.org)
 
 Dev dependencies:
 
-* [Pytest-postgresql](https://pytest-pgsql.readthedocs.io/en/latest/)
-* [Travis](https://www.travis-ci.com)
+- [Pytest-postgresql](https://pytest-pgsql.readthedocs.io/en/latest/)
+- [Travis](https://www.travis-ci.com)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 <!-- GETTING STARTED -->
 
@@ -76,27 +69,26 @@ to be completed …
 
 ### Prerequisites
 
-* postgresql (optional, for testing only)
+- postgresql (optional, for testing only)
 
 ### Installation
 
 1. Install PostgreSQL
 
 to be completed…
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
 <!-- USAGE EXAMPLES -->
+
 ## Usage
 
 to be completed…
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
 <!-- ROADMAP -->
+
 ## Roadmap
 
 - [] Complete README
@@ -105,9 +97,8 @@ to be completed…
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
 <!-- CONTRIBUTING -->
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -123,18 +114,16 @@ Don't forget to give the project a star! Thanks again!
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
 <!-- LICENSE -->
+
 ## License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
 <!-- CONTACT -->
+
 ## Contact info
 
 Lionel Hamayon - www.evolution-digitale.fr
@@ -143,15 +132,14 @@ Project Link: [https://github.com/evoludigit/clean_architecture](https://github.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
 <!-- ACKNOWLEDGMENTS -->
+
 ## Resources
 
 Apart from the DDD classics (red book: Implementing Domain Driven Design, and
 blue book: Domain Driven Design), these authors have advanced the cause for DDD
 in Python:
 
-* [Harry J.W. Percival and Bob Gregory](https://www.cosmicpython.com/)
-* [Leonardo Giordani](https://leanpub.com/clean-architectures-in-python)
-* [Sebastian Buczyński](https://breadcrumbscollector.tech/)
+- [Harry J.W. Percival and Bob Gregory](https://www.cosmicpython.com/)
+- [Leonardo Giordani](https://leanpub.com/clean-architectures-in-python)
+- [Sebastian Buczyński](https://breadcrumbscollector.tech/)
