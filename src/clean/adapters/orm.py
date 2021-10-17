@@ -74,14 +74,7 @@ def start_mappers():
         model.Todo,
         table_todo,
         properties={
-            "info": relationship(
-                model.TodoInfo,
-                uselist=False,
-            ),
-            "parent_todo": relationship(
-                model.Todo,
-                uselist=False,
-                foreign_keys=[table_todo.c.fk_parent_todo],
-            ),
+            "info": relationship(model.TodoInfo, uselist=False),
+            "parent_todo": relationship(model.Todo, remote_side=[table_todo.c.pk_todo]),
         },
     )

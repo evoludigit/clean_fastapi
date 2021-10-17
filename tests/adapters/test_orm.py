@@ -17,10 +17,10 @@ from clean.domain import model
 
 def test_TodoInfo_mapper_can_add(session):
     # instanciation des objets
-    note_info = model.TodoInfo(
+    todo_info = model.TodoInfo(
         name="make crêpes", due_date="today", description="Yummy"
     )
-    session.add(note_info)
+    session.add(todo_info)
     session.commit()
     row = list(
         session.execute(
@@ -37,12 +37,84 @@ def test_TodoInfo_mapper_can_add(session):
 
 
 def test_TodoInfo_mapper_can_query(session):
-    # instanciation des objets
+    # insert objects
     pk_todo_info = uuid.uuid4()
-    todo_info_identifier = "make_pizza"
     name = "make Pizza"
     due_date = "this week-end"
     description = "Please don’t add Pineapple"
+    # expected result
+    session.execute(
+        """
+        INSERT INTO tb_todo_info(
+            pk_todo_info,
+            identifier,
+            name,
+            due_date,
+            description
+        )
+        VALUES(
+            :pk_todo_info,
+            :identifier,
+            :name,
+            :due_date,
+            :description
+        )
+        """,
+        {
+            "pk_todo_info": pk_todo_info,
+            "identifier": model.identifier_from_string(name),
+            "name": name,
+            "due_date": due_date,
+            "description": description,
+        },
+    )
+    expected = model.TodoInfo(name, due_date, description)
+    result = session.query(model.TodoInfo).first()
+    assert result == expected
+
+
+def test_Todo_mapper_can_add(session):
+    # instanciation des objets
+    parent_todo_info = model.TodoInfo(
+        name="make crêpes", due_date="today", description="Yummy"
+    )
+    parent_todo = model.Todo(info=parent_todo_info, parent_todo=None)
+    child_todo_info = model.TodoInfo(
+        name="buy Sugar", due_date="today", description="brown sugar please"
+    )
+    child_todo = model.Todo(info=child_todo_info, parent_todo=parent_todo)
+    session.add_all([parent_todo_info, child_todo_info, parent_todo, child_todo])
+    session.commit()
+    ls_identifier = sorted(
+        [
+            r[0]
+            for r in list(
+                session.execute(
+                    """
+            SELECT
+            identifier
+            FROM tb_todo
+            """
+                ),
+            )
+        ]
+    )
+    assert ls_identifier == ["make_crepes", "make_crepes.buy_sugar"]
+
+
+def test_hierarchical_todo_mapper_can_query(session):
+    # instanciation des objets
+    pk_parent_todo_info = uuid.uuid4()
+    pk_parent_todo = uuid.uuid4()
+    parent_name = "build airplane"
+    parent_due_date = "next week-end"
+    parent_description = "Please make it sustainable"
+    pk_child_todo_info = uuid.uuid4()
+    pk_child_todo = uuid.uuid4()
+    child_name = "invent electric motor"
+    child_due_date = "next friday"
+    child_description = "it can be slow"
+    # parent_todo_info
     session.execute(
         """
         INSERT INTO tb_todo_info
@@ -60,25 +132,91 @@ def test_TodoInfo_mapper_can_query(session):
           )
         """,
         {
-            "pk_todo_info": pk_todo_info,
-            "todo_info_identifier": todo_info_identifier,
-            "name": name,
-            "due_date": due_date,
-            "description": description,
+            "pk_todo_info": pk_parent_todo_info,
+            "todo_info_identifier": model.identifier_from_string(parent_name),
+            "name": parent_name,
+            "due_date": parent_due_date,
+            "description": parent_description,
         },
     )
-    todo_info = model.TodoInfo(name, due_date, description)
-    session.add(todo_info)
-    session.commit()
-    row = list(
-        session.execute(
-            """
-            SELECT
-            name,
-            due_date,
-            description
-            FROM tb_todo_info
-            """,
-        ),
-    )[0]
-    assert row == (name, due_date, description)
+    # parent_todo
+    session.execute(
+        """
+        INSERT INTO tb_todo
+        (pk_todo,
+         fk_todo_info,
+         identifier
+        )
+        VALUES (
+          :pk_todo,
+          :fk_todo_info,
+          :identifier
+          )
+        """,
+        {
+            "pk_todo": pk_parent_todo,
+            "fk_todo_info": pk_parent_todo_info,
+            "identifier": model.identifier_from_string(parent_name),
+        },
+    )
+    # child_todo_info
+    session.execute(
+        """
+        INSERT INTO tb_todo_info
+        (pk_todo_info,
+         identifier,
+         name,
+         due_date,
+         description)
+        VALUES (
+          :pk_todo_info,
+          :todo_info_identifier,
+          :name,
+          :due_date,
+          :description
+          )
+        """,
+        {
+            "pk_todo_info": pk_child_todo_info,
+            "todo_info_identifier": model.identifier_from_string(child_name),
+            "name": child_name,
+            "due_date": child_due_date,
+            "description": child_description,
+        },
+    )
+    # child_todo
+    session.execute(
+        """
+        INSERT INTO tb_todo
+        (pk_todo,
+         fk_todo_info,
+         fk_parent_todo,
+         identifier
+        )
+        VALUES (
+          :pk_todo,
+          :fk_todo_info,
+          :fk_parent_todo,
+          :identifier
+          )
+        """,
+        {
+            "pk_todo": pk_child_todo,
+            "fk_todo_info": pk_child_todo_info,
+            "fk_parent_todo": pk_parent_todo,
+            "identifier": ".".join(
+                [
+                    model.identifier_from_string(parent_name),
+                    model.identifier_from_string(child_name),
+                ]
+            ),
+        },
+    )
+    # expected objects
+    parent_todo_info = model.TodoInfo(parent_name, parent_due_date, parent_description)
+    parent_todo = model.Todo(parent_todo_info, None)
+    child_todo_info = model.TodoInfo(child_name, child_due_date, child_description)
+    child_todo = model.Todo(info=child_todo_info, parent_todo=parent_todo)
+    # run query
+    ls_todo = session.query(model.Todo).all()
+    assert ls_todo == [parent_todo, child_todo]
